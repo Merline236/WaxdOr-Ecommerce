@@ -1,0 +1,94 @@
+{% block nav %}
+
+<style>
+  .text-dark:hover {
+  background: #ddd;
+  color: black;
+}
+ 
+ 
+
+  
+</style>
+
+
+<nav class="navbar fixed-top navbar-expand-lg bg-white border border-2">
+ 
+    <div class="container-fluid justify-content-between">
+      <a class="navbar-brand" href="{{ path('home') }}">
+      <img src="{{ asset('assets/uploads/products/LOGO.jpg') }}" alt="Logo" width="150">
+      </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      
+      
+
+  
+    <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+      <ul class="navbar-nav flex-row d-none d-md-flex">
+          <li class="nav-item me-3 me-lg-1">
+            <a class="nav-link active" aria-current="page" href="{{ path('products_index') }}">
+            <h5 class="text-dark">Femme</h5>
+            </a>
+          </li>
+
+          <li class="nav-item me-3 me-lg-1">
+            <a class="nav-link" href="#">
+            <h5 class="text-dark">Homme</h5>
+            </a>
+          </li>
+
+          <li class="nav-item me-3 me-lg-1">
+            <a class="nav-link active" aria-current="page" href="#">
+            <h5 class="text-dark">Accessoires</h5>
+            </a>
+          </li>
+      </ul>
+
+  </div>
+
+ 
+      <ul class="nav navbar-nav ms-auto mb-2 mb-lg-0">
+
+      {% if app.user %}
+            {% if is_granted('ROLE_PRODUCT_ADMIN') %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('admin_index') }}">Administration</a>
+                    </li>
+                {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
+        </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout') }}">Me deconnecter</a>
+          </li>
+      
+       
+      
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_login') }}">
+          <img src="{{ asset('assets/uploads/products/profil.webp') }}" alt="connexion" class="img" width="50">
+          </a>
+        </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('cart_index') }}">
+            <img src="{{ asset('assets/uploads/products/cart.png') }}" alt="panier" class="img" width="50">
+            </a>
+          </li>
+      </ul>
+      {% endif %} 
+ 
+
+
+  
+</div>
+ 
+</nav>
+
+{% endblock %}
+
